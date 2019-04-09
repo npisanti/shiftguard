@@ -183,8 +183,8 @@ inline void update(){
         
         ofNoFill();
         ofSetColor( uiDark );
-        ofDrawRectangle( uiX, uiCompY, uiSide, uiSide );
-        ofDrawRectangle( uiX, 1, uiSide, uiCompY-1 );
+        ofDrawRectangle( uiX, uiCompY, uiSide-1, uiSide-1 );
+        ofDrawRectangle( uiX, 1, uiSide-1, uiCompY-1 );
     fbo.end();
 }
 
