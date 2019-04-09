@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<gui>
+	<map_frag>
+		<active>1</active>
+		<speed>1</speed>
+		<plane>0</plane>
+	</map_frag>
+	<palette_table>
+		<table_cursor>1</table_cursor>
+		<palette_0>
+			<color_0>255, 33, 0, 255</color_0>
+			<color_1>255, 137, 81, 255</color_1>
+		</palette_0>
+		<palette_1>
+			<color_0>131, 131, 131, 255</color_0>
+			<color_1>255, 255, 255, 255</color_1>
+		</palette_1>
+		<palette_2>
+			<color_0>255, 255, 255, 255</color_0>
+			<color_1>255, 255, 255, 255</color_1>
+		</palette_2>
+	</palette_table>
+	<notes>
+		<master_pitch>40</master_pitch>
+		<o1_octave>1</o1_octave>
+		<o1_numerator>1</o1_numerator>
+		<o1_denominator>1</o1_denominator>
+		<o2_octave>1</o2_octave>
+		<o2_numerator>12</o2_numerator>
+		<o2_denominator>7</o2_denominator>
+		<o3_octave>1</o3_octave>
+		<o3_numerator>10</o3_numerator>
+		<o3_denominator>7</o3_denominator>
+	</notes>
+	<sine_percussion>
+		<gain>-6</gain>
+		<pitch>84</pitch>
+		<pitch_env>48</pitch_env>
+		<p_env_attack>0</p_env_attack>
+		<p_env_release>12</p_env_release>
+		<p_env_dyn_amt>0</p_env_dyn_amt>
+		<feedback>0.05</feedback>
+		<env_to_fb>0</env_to_fb>
+		<attack>4</attack>
+		<hold>30</hold>
+		<release>20</release>
+	</sine_percussion>
+	<tracker_seq>
+		<division>32</division>
+		<steps>16</steps>
+		<step_start>0</step_start>
+		<autogenerate>1</autogenerate>
+		<ag_counter>1</ag_counter>
+		<regenerate>0</regenerate>
+	</tracker_seq>
+	<readings_frag>
+		<active>1</active>
+		<speed>1</speed>
+		<plane>0</plane>
+		<writing_speed>0.15</writing_speed>
+		<writing_max>0.2</writing_max>
+		<UnknownName>0</UnknownName>
+	</readings_frag>
+	<colors>
+		<test_colors>0</test_colors>
+		<danger_A>255, 30, 0, 255</danger_A>
+		<danger_B>255, 137, 80, 255</danger_B>
+		<ui_dark>130, 130, 130, 255</ui_dark>
+	</colors>
+	<alarm_seq>
+		<division>32</division>
+		<steps>16</steps>
+		<step_start>0</step_start>
+		<autogenerate>1</autogenerate>
+		<ag_counter>1</ag_counter>
+		<regenerate>0</regenerate>
+	</alarm_seq>
+	<preshift_seq>
+		<division>32</division>
+		<steps>32</steps>
+		<step_start>0</step_start>
+		<autogenerate>1</autogenerate>
+		<ag_counter>1</ag_counter>
+		<regenerate>0</regenerate>
+	</preshift_seq>
+	<shift_seq>
+		<division>16</division>
+		<steps>16</steps>
+		<step_start>0</step_start>
+		<autogenerate>1</autogenerate>
+		<ag_counter>1</ag_counter>
+		<regenerate>0</regenerate>
+	</shift_seq>
+	<noise_device>
+		<gain>-12</gain>
+		<pitch>36</pitch>
+		<decimate>90</decimate>
+		<bits>24</bits>
+		<attack>3</attack>
+		<hold>50</hold>
+		<release>20</release>
+		<filter_mode>0</filter_mode>
+		<filter_cutoff>120</filter_cutoff>
+		<filter_reso>0.1</filter_reso>
+		<mod_attack>0</mod_attack>
+		<mod_release>50</mod_release>
+		<mod_velo>0.5</mod_velo>
+		<mEnv_to_pitch>0</mEnv_to_pitch>
+		<mEnv_to_decimation>0</mEnv_to_decimation>
+		<mEnv_to_filter>0</mEnv_to_filter>
+		<random>30</random>
+		<random_cutoff>20</random_cutoff>
+	</noise_device>
+	<armed>1</armed>
+</gui>
