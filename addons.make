@@ -4,6 +4,4 @@ ofxPDSP
 ofxGui
 ofxOsc
 ofxAudioFile
-np-patches
-np-extra 
 ofxDotFrag

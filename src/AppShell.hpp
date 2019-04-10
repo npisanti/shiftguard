@@ -26,9 +26,9 @@ ofFbo fbo;
 int downsample = 2;
 
 ofx::dotfrag::Live map;        
-    ofParameter<float> u_plane;
-    ofParameter<ofColor> u_color_a;
-    ofParameter<ofColor> u_color_b;
+    ofParameter<float> position4D;
+    ofParameter<ofColor> mapColorA;
+    ofParameter<ofColor> mapColorB;
 
 ofFbo rFbo;
 ofx::dotfrag::Live readings;        
@@ -57,8 +57,8 @@ ofParameterGroup colors { "colors", testColors, dangerA, dangerB, uiDark };
 ofParameter<float> threshold { "shift threshold", 0.5f, 0.0f, 1.0f };
 ofParameter<bool> armed{ "armed", false };
 
-float oldPlane;
-float newPlane;
+float oldPosition;
+float newPosition;
 
 //--------------------------------------------------------------
 inline void setup(){
@@ -71,14 +71,14 @@ inline void setup(){
         
     map.load( ofToDataPath( "map.frag" ) );
     map.timewarp();
-    map.uniform( u_plane, "u_plane", false );
-    map.uniform( u_color_a, "u_color_a", false );
-    map.uniform( u_color_b, "u_color_b", false );
-    u_plane = ofRandom( 42 );
+    map.uniform( position4D, "u_position", false );
+    map.uniform( mapColorA, "u_color_a", false );
+    map.uniform( mapColorB, "u_color_b", false );
+    position4D = ofRandom( 42 );
     
     readings.load( ofToDataPath( "readings.frag" ) );
     readings.timewarp();
-    readings.uniform( u_plane, "u_plane" );
+    readings.uniform( position4D, "u_plane" );
     readings.uniform( rSpeed.set("writing speed", 0.2f, 0.0f, 1.0f), "u_speed" );
     readings.uniform( rMax.set("writing max", 1.0f, 0.0f, 1.0f), "u_max" );
 
@@ -149,12 +149,12 @@ inline void update(){
     
     if( mode==1 ){
         float pct = noise.meter();
-        u_plane = pct*newPlane + (1.0f-pct)*oldPlane;
+        position4D = pct*newPosition + (1.0f-pct)*oldPosition;
         mapColors( 1.0f-pct );
     }else if( mode==2 ){
         float pct = section->meter_percent();
         if( pct>0.0f ){
-            u_plane = pct*newPlane + (1.0f-pct)*oldPlane;
+            position4D = pct*newPosition + (1.0f-pct)*oldPosition;
             mapColors( pct );
         }
     }else if( testColors ){
@@ -196,15 +196,15 @@ inline void draw(){
 
 //--------------------------------------------------------------
 void mapColors( float transition ){
-    u_color_a = dangerA.get().getLerped( ofColor::white, transition );
-    u_color_b = dangerB.get().getLerped( uiDark.get(), transition );
+    mapColorA = dangerA.get().getLerped( ofColor::white, transition );
+    mapColorB = dangerB.get().getLerped( uiDark.get(), transition );
 }
 
 void beginShift( float direction ){
     section->launchCell( 1 ); 
     readings.setTime( rand()%4242 * 2 );
-    oldPlane = u_plane;
-    newPlane = oldPlane + direction; 
+    oldPosition = position4D;
+    newPosition = oldPosition + direction; 
 }
 
 void shiftcompass( int x, int y, int w, int h ){

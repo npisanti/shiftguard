@@ -79,7 +79,7 @@ float stroke(float x, float d, float w){
   
 uniform vec2 u_resolution;
 uniform float u_time;
-uniform float u_plane;
+uniform float u_position;
 uniform vec3 u_color_a;
 uniform vec3 u_color_b;
 
@@ -91,9 +91,9 @@ void main(){
     st.x *= ratio;
     st.y += u_time * 0.03;
 
-    float no = noise( vec3( st*2.1, u_plane ) ) * 0.7 
-             + noise( vec3( st*4.0, u_plane ) ) * 0.27
-             + noise( vec3( st*30., u_plane ) ) * 0.03;
+    float no = noise( vec3( st*2.1, u_position ) ) * 0.7 
+             + noise( vec3( st*4.0, u_position ) ) * 0.27
+             + noise( vec3( st*30., u_position ) ) * 0.03;
     
     float w = 0.025;
     
