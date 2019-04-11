@@ -7,4 +7,4 @@ The unstable archipelagos are a single 4-dimensional being that resemble an arch
 - useful readings of other data 
 - try to predict the next position of the archipelagos when a shift happens
 
-Some demos (here)[http://npisanti.com/journal/2019_04_11__shiftguard.html].
+Some demos [here](http://npisanti.com/journal/2019_04_11__shiftguard.html).
