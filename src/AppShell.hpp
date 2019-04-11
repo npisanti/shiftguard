@@ -185,6 +185,13 @@ inline void update(){
         ofSetColor( uiDark );
         ofDrawRectangle( uiX, uiCompY, uiSide-1, uiSide-1 );
         ofDrawRectangle( uiX, 1, uiSide-1, uiCompY-1 );
+
+        ofSetColor(0);
+        ofDrawLine( 0, fbo.getHeight(), fbo.getWidth(), fbo.getHeight() );
+   
+        ofSetColor( uiDark );
+        ofDrawRectangle( 1, 1, uiX-1, fbo.getHeight()-2 );     
+        
     fbo.end();
 }
 
@@ -196,8 +203,8 @@ inline void draw(){
 
 //--------------------------------------------------------------
 void mapColors( float transition ){
-    mapColorA = dangerA.get().getLerped( ofColor::white, transition );
-    mapColorB = dangerB.get().getLerped( uiDark.get(), transition );
+    mapColorA = dangerA.get().getLerped( uiDark.get(), transition );
+    mapColorB = dangerB.get().getLerped( ofColor::white, transition );
 }
 
 void beginShift( float direction ){

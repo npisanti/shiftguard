@@ -59,13 +59,13 @@
 		<plane>0</plane>
 		<writing_speed>0.15</writing_speed>
 		<writing_max>0.2</writing_max>
-		<UnknownName>0</UnknownName>
+		<UnknownName>-0.705919</UnknownName>
 	</readings_frag>
 	<colors>
 		<test_colors>0</test_colors>
 		<danger_A>255, 30, 0, 255</danger_A>
-		<danger_B>255, 137, 80, 255</danger_B>
-		<ui_dark>130, 130, 130, 255</ui_dark>
+		<danger_B>255, 134, 82, 255</danger_B>
+		<ui_dark>60, 100, 100, 255</ui_dark>
 	</colors>
 	<alarm_seq>
 		<division>32</division>
@@ -112,4 +112,5 @@
 		<random_cutoff>20</random_cutoff>
 	</noise_device>
 	<armed>1</armed>
+	<shift_threshold>0.5</shift_threshold>
 </gui>
