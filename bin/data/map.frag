@@ -89,7 +89,7 @@ void main(){
     
     float ratio = u_resolution.x / u_resolution.y;
     st.x *= ratio;
-    st.y += u_time * 0.03;
+    st.y -= u_time * 0.03;
 
     float no = noise( vec3( st*2.1, u_position ) ) * 0.7 
              + noise( vec3( st*4.0, u_position ) ) * 0.27
