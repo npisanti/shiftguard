@@ -5,3 +5,4 @@ ofxGui
 ofxOsc
 ofxAudioFile
 ofxDotFrag
+shiftguard
