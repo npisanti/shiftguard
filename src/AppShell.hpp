@@ -5,8 +5,8 @@
 
 #include "dotfrag/Live.h"
 #include "routines/downsample.h"
-#include "synth/SinePercussion.h"
 #include "synth/NoiseDevice.h"
+#include "synth/QuickSampler.h"
 #include "sequence/Tracker.h"
 
 class AppShell {
@@ -38,8 +38,8 @@ float rMargin = 6;
 
 pdsp::SequencerSection *    section;
 pdsp::Engine                engine;
-np::synth::SinePercussion   perc;
 np::synth::NoiseDevice      noise;
+np::synth::QuickSampler     bipbip;
 np::sequence::Tracker       alarm;
 np::sequence::Tracker       preshift;
 np::sequence::Tracker       shiftseq;
@@ -104,12 +104,12 @@ inline void setup(){
     section->setCell( 3, &aftershift, pdsp::Behavior::OneShot  );
 
     // ----------- SIGNAL ------------- 
-    section->out_trig(0)  >> perc.in("trig"); 
-    section->out_value(1) >> perc.in("pitch"); 
-    section->out_trig(2)  >> noise.in("trig"); 
+    section->out_trig(0)  >> bipbip.in("trig"); 
+    section->out_trig(1)  >> noise.in("trig"); 
     
-    perc >> engine.audio_out(0);
-    perc >> engine.audio_out(1);
+    bipbip.load( ofToDataPath("bipbip.ogg"), true ) ;
+    bipbip >> engine.audio_out(0);
+    bipbip >> engine.audio_out(1);
     
     noise.ch(0) >> engine.audio_out(0);
     noise.ch(1) >> engine.audio_out(1);
@@ -122,8 +122,8 @@ inline void setup(){
     gui.add( alarm.parameters );
     gui.add( preshift.parameters );
     gui.add( shiftseq.parameters );
-    gui.add( perc.parameters );
     gui.add( noise.parameters );
+    gui.add( bipbip.parameters );
     gui.add( armed );
     gui.add( threshold );
     gui.loadFromFile( "settings.xml" );
