@@ -5,7 +5,6 @@
 #include "ofxPDSP.h"
 
 #include "dotfrag/Live.h"
-#include "routines/downsample.h"
 #include "synth/NoiseDevice.h"
 #include "synth/QuickSampler.h"
 #include "sequence/Tracker.h"
@@ -19,8 +18,6 @@ class ofApp : public ofBaseApp{
 float uiSide, uiCompY, uiX;
 
 ofFbo fbo;
-
-int downsample = 2;
 
 ofx::dotfrag::Live map;        
     ofParameter<float> position4D;
@@ -67,9 +64,24 @@ void setup(){
         ofHideCursor();
     #endif
 
+    ofFboSettings settings;
+    settings.width = 400;
+    settings.height = 240;
+    settings.minFilter = GL_NEAREST;
+    settings.maxFilter = GL_NEAREST;
+    fbo.allocate( settings );
+    fbo.begin();
+        ofClear( 0, 0, 0, 0 );
+    fbo.end();
+
     ofBackground( 0 );
-    ofSetCircleResolution(32);
     ofDisableAntiAliasing(); 
+    
+    splash.setup( engine, fbo.getWidth(), fbo.getHeight() );
+    
+    // ---------------------------
+
+    ofSetCircleResolution(32);
             
     map.load( ofToDataPath( "map.frag" ) );
     map.timewarp();
@@ -83,8 +95,6 @@ void setup(){
     readings.uniform( position4D, "u_plane" );
     readings.uniform( rSpeed.set("writing speed", 0.2f, 0.0f, 1.0f), "u_speed" );
     readings.uniform( rMax.set("writing max", 1.0f, 0.0f, 1.0f), "u_max" );
-
-    np::fbo_init_downsampled( fbo, ofGetWidth(), ofGetHeight(), downsample );
 
     uiSide = fbo.getHeight() * 0.35f;
     uiCompY = fbo.getHeight()*(0.65f);
@@ -131,8 +141,6 @@ void setup(){
     gui.loadFromFile( "settings.xml" );
     gui.minimizeAll();
 
-
-    splash.setup( engine, fbo.getWidth(), fbo.getHeight() );
 }
 
 void update(){
