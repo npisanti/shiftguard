@@ -36,6 +36,10 @@ void np::SplashScreen::setup( pdsp::Engine & engine, int w, int h ){
             devices[i].resize(maxlen);
         }
     }
+    
+    if( devices.size() == 1 ){
+        startEngine();
+    }
 }
 
 void np::SplashScreen::draw(){
@@ -50,7 +54,7 @@ void np::SplashScreen::draw(){
     
     for(size_t i=0; i<devices.size(); ++i ){
         int by = boxy + i*boxgap;
-        if( i==selected ) ofDrawRectangle( bx, by, boxw, boxh );
+        if( int(i) == selected ) ofDrawRectangle( bx, by, boxw, boxh );
         ofDrawBitmapString( devices[i], bx+(8*3), by+13 );
     }
 }
@@ -60,7 +64,7 @@ void np::SplashScreen::keyPressed( int key ){
     switch( key ){
         case OF_KEY_DOWN:
             selected++;
-            if( selected >= devices.size() ){ selected = 0; }
+            if( selected >= int(devices.size()) ){ selected = 0; }
         break;
         
         case OF_KEY_UP:
