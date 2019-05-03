@@ -351,6 +351,28 @@ void windowResized(int w, int h){
 
 }; // class ofApp ----------------------------------------------
 
+namespace np{
+    unsigned int dev_random_seed()
+    {
+        unsigned int random_seed;
+        std::ifstream file ("/dev/urandom", std::ios::binary);
+        if (file.is_open())
+        {
+            char * memblock;
+            int size = sizeof(int);
+            memblock = new char [size];
+            file.read (memblock, size);
+            file.close();
+            random_seed = *reinterpret_cast<int*>(memblock);
+            delete[] memblock;
+        }// end if
+        else
+        {
+            random_seed = std::time(nullptr);
+        }
+        return random_seed;
+    } 
+}
 
 //--------------------------------------------------------------
 int main(){
@@ -378,6 +400,9 @@ int main(){
     ofSetWindowPosition( ofRandom( 0, sw/2), ofRandom( 0, sh/4) );
     
 #endif
+
+    ofSeedRandom( np::dev_random_seed() );
+    pdsp::seedGlobalRandom( np::dev_random_seed() );
 
 	ofRunApp( new ofApp() );
 }
