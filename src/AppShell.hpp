@@ -12,10 +12,6 @@
 class AppShell {
 public:
 
-// platform-specific settings here
-int samplerate = 44100;
-int buffersize = 512;
-int audioID = 0;
 
 // ---------- variables ----------------------------------------
 
@@ -64,8 +60,11 @@ float newPosition;
 inline void setup(){
 
     ofDisableAntiAliasing(); 
-    if( !bDrawGui ) ofHideCursor();
     
+#ifdef __ARM_ARCH
+    ofHideCursor();
+#endif 
+
     ofBackground( 0 );
     ofSetCircleResolution(32);
         
@@ -129,10 +128,6 @@ inline void setup(){
     gui.loadFromFile( "settings.xml" );
     gui.minimizeAll();
     
-    // ----------- ENGINE ------------- 
-    engine.listDevices();
-    engine.setDeviceID( audioID ); 
-    engine.setup( samplerate, buffersize, 3); 
 }
 
 //--------------------------------------------------------------
@@ -315,6 +310,11 @@ inline void keyPressed(int key){
             }
         break;
     }
+}
+
+//--------------------------------------------------------------
+inline void mousePressed(int x, int y){
+
 }
 
 //--------------------------------------------------------------
