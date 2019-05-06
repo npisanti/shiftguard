@@ -194,6 +194,7 @@ void np::sequence::Tracker::loadFile() {
     bLoaded = true;
 }
 
+#if defined(OF_TARGET_LINUX64) || defined(OF_TARGET_LINUX) || defined(OF_TARGET_OSX) || defined(OF_TARGET_MINGW) || defined(OF_TARGET_WINVS)
 
 void np::sequence::Tracker::watch(){
     ofFile file( path );
@@ -217,4 +218,4 @@ void np::sequence::Tracker::checkFile(ofEventArgs &args){
     }
 }
 
-
+#endif
