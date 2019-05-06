@@ -11,6 +11,8 @@
 
 #include "SplashScreen.h"
 
+#pragma comment( linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
+
 class ofApp : public ofBaseApp{
 
 // ---------- variables ----------------------------------------
