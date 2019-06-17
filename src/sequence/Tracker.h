@@ -40,7 +40,7 @@ private:
 
     float interval = 0.05f;   
     
-#if defined(OF_TARGET_LINUX64) || defined(OF_TARGET_LINUX) || defined(OF_TARGET_OSX) || defined(OF_TARGET_MINGW) || defined(OF_TARGET_WINVS) 
+#if defined(__linux__) || defined(OF_TARGET_OSX) || defined(OF_TARGET_MINGW) || defined(OF_TARGET_WINVS) 
     void watch();
 
     time_t writeTimestamp = 0.0f;
